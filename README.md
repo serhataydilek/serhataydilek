@@ -1,66 +1,53 @@
-# Serhat Aydilek
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/terminal-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="assets/terminal-light.svg">
+  <img src="assets/terminal-dark.svg"
+       width="128"
+       align="left"
+       alt="serhat@github terminal">
+</picture>
 
-Computer Engineering student and software developer building full-stack, computer vision, security, and mobile projects.
+### Hey!
 
-I study Computer Engineering at Istanbul Health and Technology University and train at 42 Istanbul.
+👋 I'm **Serhat**.
 
-## About Me
+💻 Computer Engineering student building full-stack, computer vision, security, and mobile projects.
 
-I am a Computer Engineering student focused on building practical software systems. Through coursework at Istanbul Health and Technology University and project-based training at 42 Istanbul, I work across frontend, backend, and system-level problems. I have web development experience at SmartSites Construction and completed an Information Security internship at Ziraat Katılım Bank. I care about full-stack applications, computer vision and photogrammetry workflows, security tooling, and turning unfamiliar technologies into working solutions. I am motivated by continuous learning and improving through real projects.
+🧩 Studying at **İSTÜN**, training at **42 Istanbul**, and contributing to web development at **SmartSites Construction**.
 
-## Current Focus
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-313131?style=flat&labelColor=545454&color=313131)](https://www.linkedin.com/in/serhat-aydilek-a50873371) [![Email](https://img.shields.io/badge/Email-313131?style=flat&labelColor=545454&color=313131)](mailto:serhat.aydilek.dev@gmail.com) · 📍 Istanbul, Türkiye
 
-- Building and improving full-stack applications
-- Developing Structura AI
-- Improving backend and Node.js fundamentals
-- Completing the 42 curriculum
-- Learning through real projects
+<br clear="both"/>
 
-## Selected Projects
+#### ⚡ At a glance
 
-### [Structura AI](https://github.com/serhataydilek/structurAI) — In Progress
+I work across frontend, backend, computer vision, media processing, and security-oriented systems.<br>
+Computer Engineering at **İSTÜN** · **42 Istanbul** · web development at **SmartSites Construction**.<br>
+Completed an Information Security internship at **Ziraat Katılım Bank**.
 
-Digital twin and photogrammetry workflow for construction capture: photo/video intake, sparse reconstruction validation, external model import, and reporting.
+#### 🌀 Projects
 
-`Next.js` · `TypeScript` · `FastAPI` · `COLMAP` · `FFmpeg` · `3D model processing`
+| **Full-stack & Vision** | **Systems & Security** |
+| --- | --- |
+| • [**Structura AI**](https://github.com/serhataydilek/structurAI) — *In Progress*<br>Digital twin and photogrammetry workflow for construction capture.<br>`Next.js` · `FastAPI` · `COLMAP` · `TypeScript` | • [**Construction Video**](https://github.com/serhataydilek/construction_video) — *Demo Ready*<br>Frame preparation and validation tools for photogrammetry workflows.<br>`Python` · `OpenCV` · `COLMAP` |
+| • [**SalesMirror**](https://github.com/serhataydilek/salescallAI) — *Demo Ready*<br>Local-first sales call coaching and reporting application.<br>`Next.js` · `FastAPI` · `SQLite` | • [**vulnScanner**](https://github.com/serhataydilek/vulnScanner)<br>Educational web vulnerability scanner with explainable checks.<br>`React` · `Express` · `SQLite` |
+| • [**Video To Text**](https://github.com/serhataydilek/videototext) — *Demo Ready*<br>Local video transcription with Next.js, FFmpeg, yt-dlp, and whisper.cpp.<br>`Next.js` · `TypeScript` · `FFmpeg` · `whisper.cpp` | • [**PhishGuard**](https://github.com/serhataydilek/PhishGuard) — *Prototype*<br>Frontend prototype for heuristic phishing checks.<br>`React` · `Vite` |
 
-### [SalesMirror](https://github.com/serhataydilek/salescallAI) — Demo Ready
+#### 🛠️ What am I working on?
 
-Local-first sales call coaching app for uploading recordings or transcripts, generating coaching reports, and reviewing score trends without sending data to external cloud AI by default.
+| **Category** | **Description** |
+| --- | --- |
+| **Building** | [Structura AI](https://github.com/serhataydilek/structurAI) and practical full-stack projects |
+| **Contributing** | Web development at SmartSites Construction |
+| **Learning** | Node.js fundamentals, C, and the 42 curriculum |
+| **Exploring** | Computer vision, building automation, security, and local AI |
 
-`Next.js` · `TypeScript` · `FastAPI` · `SQLite` · `optional local AI`
+#### 🔧 Toolbox
 
-### [Construction Video](https://github.com/serhataydilek/construction_video) — Demo Ready
+**Frontend:** TypeScript · JavaScript · React · Next.js<br>
+**Backend & systems:** Python · FastAPI · REST APIs · Linux · Docker · Git<br>
+**Vision & media:** OpenCV · FFmpeg · COLMAP · Server-Sent Events
 
-Video preparation and validation tools that select SfM-ready frames from drone or inspection footage for COLMAP-style photogrammetry workflows.
+---
 
-`Python` · `OpenCV` · `COLMAP` · `video processing`
-
-### [Video To Text](https://github.com/serhataydilek/videototext) — Demo Ready
-
-Local YouTube/video transcription app that downloads audio, chunks it, and transcribes with whisper.cpp while keeping completed results in the browser.
-
-`Next.js` · `TypeScript` · `yt-dlp` · `FFmpeg` · `whisper.cpp`
-
-## Technical Toolbox
-
-- **Frontend:** TypeScript, JavaScript, React, Next.js, HTML, CSS
-- **Backend:** Python, FastAPI, REST APIs, Node.js fundamentals
-- **Data:** PostgreSQL, SQLite
-- **Tools:** Git, GitHub, Linux
-- **Other:** OpenCV, FFmpeg, COLMAP, Server-Sent Events
-
-## Experience
-
-**SmartSites Construction — Web Development**  
-Built and improved responsive interfaces with React, Next.js, and TypeScript, working on product workflows and performance-minded frontend delivery.
-
-**Ziraat Katılım Bank — Information Security Internship**  
-Supported information security work involving monitoring, automation, logging, and Linux systems.
-
-## Contact
-
-- GitHub: [serhataydilek](https://github.com/serhataydilek)
-- LinkedIn: [serhat-aydilek-a50873371](https://www.linkedin.com/in/serhat-aydilek-a50873371)
-- Email: [serhat.aydilek.dev@gmail.com](mailto:serhat.aydilek.dev@gmail.com)
-- Istanbul, Türkiye
+<p align="right"><b>~</b> <a href="mailto:serhat.aydilek.dev@gmail.com">serhat.aydilek.dev@gmail.com</a></p>
