@@ -11,7 +11,7 @@
 
 I'm **Serhat**.<br>
 Computer Engineering student building full-stack, computer vision, and security-oriented systems.<br>
-Studying at **İSTÜN**, training at **42 Istanbul**, and contributing to web development at **SmartSites Construction**.
+Studying at **ISTÜN**, training at **42 Istanbul**, and contributing to web development at **SmartSites Construction**.
 
 [LinkedIn](https://www.linkedin.com/in/serhat-aydilek-a50873371) · [Email](mailto:serhat.aydilek.dev@gmail.com) · Istanbul, Türkiye
 
