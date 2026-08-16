@@ -73,7 +73,7 @@ def projects(repos):
         if repo:
             language=repo.get("language") or "repository"; metric=f"★ {repo['stargazers_count']}" if repo.get("stargazers_count") else f"updated {date(repo['updated_at'])}"; description=short(preferred_description or repo.get("description") or "Project details available on GitHub.",76)
         else: language,metric,description="repository","","Repository currently unavailable."
-        status="currently building" if active else language.lower()
+        status="flutter · currently building" if active else language.lower()
         body+=t(28,y,f"0{i+1}","accent",11,"bold")+t(68,y,display,"text",14,"bold")+t(716,y,metric,"dim",11,anchor="end")+t(68,y+20,description,"muted",11)+t(68,y+39,status,"accent",11,"bold" if active else "normal")
         if i<4: body+=f'<line class="line" x1="28" y1="{y+50}" x2="716" y2="{y+50}"/>'
     save("projects.svg",398,"Featured GitHub projects",body)
