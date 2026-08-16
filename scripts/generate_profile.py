@@ -15,7 +15,13 @@ ROOT = Path(__file__).resolve().parents[1]
 ASSETS = ROOT / "assets"
 USER = "serhataydilek"
 WIDTH = 744
-FEATURED = {"structurAI": "StructurAI", "salescallAI": "SalesMirror", "construction_video": "video2sfm", "videototext": "Video To Text"}
+FEATURED = [
+    ("structurAI", "StructurAI", None, False),
+    ("salescallAI", "SalesMirror", None, False),
+    ("kafeproje", "Istanbul Cafe Discovery", "Discover cafés around Istanbul through a map-focused discovery experience.", True),
+    ("construction_video", "video2sfm", None, False),
+    ("videototext", "Video To Text", None, False),
+]
 
 def api(path):
     headers = {"Accept": "application/vnd.github+json", "User-Agent": "serhataydilek-profile-generator"}
@@ -62,14 +68,15 @@ def about():
 
 def projects(repos):
     by_name={r["name"]:r for r in repos}; body=head("featured projects","git log --focus")
-    for i,(name,display) in enumerate(FEATURED.items()):
+    for i,(name,display,preferred_description,active) in enumerate(FEATURED):
         y=76+i*62; repo=by_name.get(name)
         if repo:
-            language=repo.get("language") or "repository"; metric=f"★ {repo['stargazers_count']}" if repo.get("stargazers_count") else f"updated {date(repo['updated_at'])}"; description=short(repo.get("description") or "Project details available on GitHub.",76)
+            language=repo.get("language") or "repository"; metric=f"★ {repo['stargazers_count']}" if repo.get("stargazers_count") else f"updated {date(repo['updated_at'])}"; description=short(preferred_description or repo.get("description") or "Project details available on GitHub.",76)
         else: language,metric,description="repository","","Repository currently unavailable."
-        body+=t(28,y,f"0{i+1}","accent",11,"bold")+t(68,y,display,"text",14,"bold")+t(716,y,metric,"dim",11,anchor="end")+t(68,y+20,description,"muted",11)+t(68,y+39,language.lower(),"accent",11)
-        if i<3: body+=f'<line class="line" x1="28" y1="{y+50}" x2="716" y2="{y+50}"/>'
-    save("projects.svg",336,"Featured GitHub projects",body)
+        status="currently building" if active else language.lower()
+        body+=t(28,y,f"0{i+1}","accent",11,"bold")+t(68,y,display,"text",14,"bold")+t(716,y,metric,"dim",11,anchor="end")+t(68,y+20,description,"muted",11)+t(68,y+39,status,"accent",11,"bold" if active else "normal")
+        if i<4: body+=f'<line class="line" x1="28" y1="{y+50}" x2="716" y2="{y+50}"/>'
+    save("projects.svg",398,"Featured GitHub projects",body)
 
 def activity(user,repos,events):
     pushes=[e for e in events if e.get("type")=="PushEvent"]; recent=[]
