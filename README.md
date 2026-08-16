@@ -1,18 +1,23 @@
-<p align="center"><img src="assets/hero.svg" alt="Serhat Aydilek developer dashboard" width="744"/></p>
-<p align="center"><img src="assets/about.svg" alt="About" width="744"/></p>
-<p align="center"><img src="assets/projects.svg" alt="Featured projects" width="744"/></p>
-<p align="center"><img src="assets/activity.svg" alt="Public GitHub activity" width="744"/></p>
-<p align="center"><img src="assets/languages.svg" alt="Language signal" width="744"/></p>
-<p align="center"><img src="assets/streak.svg" alt="Development pulse" width="744"/></p>
+<div align="center"><img src="assets/stats.svg" width="620" alt="Contribution overview"/></div>
 
-<p align="center">
-  <a href="https://github.com/serhataydilek/structurAI">StructurAI</a> ·
-  <a href="https://github.com/serhataydilek/salescallAI">SalesMirror</a> ·
-  <a href="https://github.com/serhataydilek/kafeproje">Istanbul Cafe Discovery</a> ·
-  <a href="https://github.com/serhataydilek/construction_video">video2sfm</a> ·
-  <a href="https://github.com/serhataydilek/videototext">Video To Text</a> ·
-  <a href="https://www.linkedin.com/in/serhat-aydilek-a50873371">LinkedIn</a> ·
-  <a href="mailto:serhat.aydilek.dev@gmail.com">email</a>
-</p>
+<img src="assets/hd-about.svg" width="620" alt="about"/>
+<div align="center"><img src="assets/about.svg" width="620" alt="About Serhat"/></div>
 
-<p align="center"><img src="assets/footer.svg" alt="keep building, keep learning" width="744"/></p>
+<img src="assets/hd-projects.svg" width="620" alt="projects"/>
+<div align="center"><img src="assets/repos.svg" width="620" alt="Featured projects"/></div>
+
+<img src="assets/hd-social.svg" width="620" alt="social"/>
+<div align="center"><img src="assets/social.svg" width="620" alt="Social links"/></div>
+
+<img src="assets/hd-activity.svg" width="620" alt="activity"/>
+<div align="center"><img src="assets/activity.svg" width="620" alt="Recent public activity"/></div>
+
+<img src="assets/hd-stats.svg" width="620" alt="stats"/>
+<div align="center">
+  <img src="assets/streak.svg" width="620" alt="Contribution streaks"/>
+  <img src="assets/langs.svg" width="620" alt="Top languages"/>
+  <img src="assets/weekday.svg" width="620" alt="Activity by weekday"/>
+  <img src="assets/year.svg" width="620" alt="Year activity"/>
+</div>
+
+<p align="center"><sub>☾ <a href="https://www.linkedin.com/in/serhat-aydilek-a50873371">linkedin</a> · <a href="mailto:serhat.aydilek.dev@gmail.com">email</a> · istanbul</sub></p>
