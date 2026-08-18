@@ -38,26 +38,32 @@ def api(path): return request(f"https://api.github.com{path}")
 
 def calendar():
     now = datetime.now(timezone.utc)
-    query = """query($login:String!,$from:DateTime!,$to:DateTime!){user(login:$login){contributionsCollection(from:$from,to:$to){contributionCalendar{totalContributions weeks{contributionDays{date contributionCount weekday}}}}}}"""
+    query = """query($login:String!,$from:DateTime!,$to:DateTime!){user(login:$login){contributionsCollection(from:$from,to:$to){totalCommitContributions totalPullRequestContributions totalPullRequestReviewContributions totalIssueContributions restrictedContributionsCount contributionCalendar{totalContributions weeks{contributionDays{date contributionCount weekday}}}}}}"""
     variables = {"login": USER, "from": (now - timedelta(days=364)).isoformat(), "to": now.isoformat()}
     try:
         data = request("https://api.github.com/graphql", json.dumps({"query": query, "variables": variables}).encode())
-        cal = data["data"]["user"]["contributionsCollection"]["contributionCalendar"]
+        collection = data["data"]["user"]["contributionsCollection"]
+        cal = collection["contributionCalendar"]
         days = [day for week in cal["weeks"] for day in week["contributionDays"]]
-        return cal["totalContributions"], days
-    except (KeyError, urllib.error.URLError, urllib.error.HTTPError):
-        return None, []
+        return {
+            "total": cal["totalContributions"], "days": days,
+            "commits": collection["totalCommitContributions"],
+            "pull_requests": collection["totalPullRequestContributions"],
+            "reviews": collection["totalPullRequestReviewContributions"],
+            "issues": collection["totalIssueContributions"],
+            "restricted": collection["restrictedContributionsCount"],
+        }
+    except (KeyError, TypeError, ValueError, urllib.error.URLError, urllib.error.HTTPError):
+        return {"total": None, "days": [], "commits": None, "pull_requests": None, "reviews": None, "issues": None, "restricted": None}
 
 
 def load():
     try:
         user = api(f"/users/{USER}")
         repos = [r for r in api(f"/users/{USER}/repos?per_page=100&type=owner&sort=updated") if not r["fork"] and not r["archived"]]
-        events = api(f"/users/{USER}/events/public?per_page=100")
     except (urllib.error.URLError, urllib.error.HTTPError) as err:
         raise SystemExit(f"GitHub API request failed: {err}") from err
-    total, days = calendar()
-    return user, repos, events, total, days
+    return user, repos, calendar()
 
 
 def xml_text(x, y, value, cls="t", size=12, anchor="start", weight="400"):
@@ -137,16 +143,19 @@ def social(user, repos):
     put("social.svg", 127, "Social links and GitHub counts", body)
 
 
-def activity(events):
-    kinds = [("PushEvent", "pushes"), ("PullRequestEvent", "pull requests"), ("IssuesEvent", "issues"), ("IssueCommentEvent", "comments")]
-    counts = Counter(event.get("type") for event in events)
-    peak = max((counts[key] for key, _ in kinds), default=1) or 1
-    body = xml_text(0, 16, "recent public events", "m", 10)
-    for i, (key, label) in enumerate(kinds):
-        y, value = 37 + i * 22, counts[key]
-        body += xml_text(0, y, label, "m", 11) + f'<line class="u" x1="130" y1="{y - 4}" x2="550" y2="{y - 4}" stroke-width="2"/>'
-        body += f'<line class="a" x1="130" y1="{y - 4}" x2="{130 + 420 * value / peak:.1f}" y2="{y - 4}" stroke="currentColor" stroke-width="2"><animate attributeName="x2" from="130" to="{130 + 420 * value / peak:.1f}" dur=".6s" fill="freeze"/></line>' + xml_text(620, y, value, "t", 11, "end")
-    put("activity.svg", 130, "Recent public GitHub activity", body)
+def activity(metrics):
+    kinds = [("commits", "commits · last 365d"), ("pull_requests", "pull requests · last 365d"), ("reviews", "reviews · last 365d"), ("issues", "issues · last 365d")]
+    available = all(metrics[key] is not None for key, _ in kinds)
+    values = [metrics[key] or 0 for key, _ in kinds]
+    peak = max(values) or 1
+    body = xml_text(0, 16, "last 365 days" if available else "last 365 days · yearly categories unavailable", "m", 10)
+    for i, ((key, label), value) in enumerate(zip(kinds, values)):
+        y = 37 + i * 22
+        body += xml_text(0, y, label, "m", 11) + f'<line class="u" x1="180" y1="{y - 4}" x2="550" y2="{y - 4}" stroke-width="2"/>'
+        if available:
+            body += f'<line class="a" x1="180" y1="{y - 4}" x2="{180 + 370 * value / peak:.1f}" y2="{y - 4}" stroke="currentColor" stroke-width="2"><animate attributeName="x2" from="180" to="{180 + 370 * value / peak:.1f}" dur=".6s" fill="freeze"/></line>'
+        body += xml_text(620, y, value if available else "—", "t", 11, "end")
+    put("activity.svg", 130, "GitHub contribution activity over the last 365 days", body)
 
 
 def streak(days):
@@ -209,10 +218,10 @@ def year(days):
 
 def main():
     ASSETS.mkdir(exist_ok=True)
-    user, owned_repos, events, total, days = load()
-    stats(user, days, total)
+    user, owned_repos, metrics = load()
+    stats(user, metrics["days"], metrics["total"])
     for name in ("about", "projects", "social", "activity", "stats"): heading(name)
-    about(); repo_panel(owned_repos); social(user, owned_repos); activity(events); streak(days); langs(owned_repos); weekday(days); year(days)
+    about(); repo_panel(owned_repos); social(user, owned_repos); activity(metrics); streak(metrics["days"]); langs(owned_repos); weekday(metrics["days"]); year(metrics["days"])
     print(f"generated minimal profile assets from {len(owned_repos)} owned public repositories")
 
 
