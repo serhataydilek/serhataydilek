@@ -4,7 +4,7 @@
 <div align="center"><img src="assets/about.svg" width="620" alt="About Serhat"/></div>
 
 <img src="assets/hd-projects.svg" width="620" alt="projects"/>
-<div align="center"><img src="assets/repos.svg" width="620" alt="Featured projects"/></div>
+<div align="center"><img src="assets/repos.svg?v=2" width="620" alt="Featured projects"/></div>
 
 <img src="assets/hd-social.svg" width="620" alt="social"/>
 <div align="center"><img src="assets/social.svg" width="620" alt="Social links"/></div>
