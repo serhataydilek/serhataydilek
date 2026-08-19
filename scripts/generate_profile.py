@@ -16,11 +16,9 @@ ASSETS = ROOT / "assets"
 USER = "serhataydilek"
 W = 620
 FEATURED = [
-    ("structurAI", "StructurAI", False),
-    ("salescallAI", "SalesMirror", False),
-    ("kafeproje", "Istanbul Cafe Discovery", True),
-    ("construction_video", "video2sfm", False),
-    ("videototext", "Video To Text", False),
+    ("kafeproje", "Istanbul Cafe Discovery", "Flutter · Dart · currently building"),
+    ("construction_video", "video2sfm", "Python · OpenCV · COLMAP"),
+    ("veil", "Veil", "Kotlin · Rust · currently building"),
 ]
 
 
@@ -119,15 +117,13 @@ def about():
 def repo_panel(repos):
     indexed = {repo["name"]: repo for repo in repos}
     body = ''
-    for i, (slug, name, active) in enumerate(FEATURED):
+    for i, (slug, name, label) in enumerate(FEATURED):
         repo, y = indexed.get(slug), 20 + i * 30
-        language = repo.get("language") if repo else None
         updated = datetime.fromisoformat(repo["updated_at"].replace("Z", "+00:00")).strftime("%b %Y").lower() if repo else "unpublished"
-        right = "Flutter · currently building" if active else (language or "repository")
-        body += xml_text(0, y, f"{i + 1:02d}", "m", 10) + xml_text(31, y, name, "t", 12) + xml_text(620, y, right, "a" if active else "m", 11, "end")
+        body += xml_text(0, y, f"{i + 1:02d}", "m", 10) + xml_text(31, y, name, "t", 12) + xml_text(620, y, label, "m", 11, "end")
         body += xml_text(31, y + 14, f"updated {updated}", "m", 10)
         if i < len(FEATURED) - 1: body += f'<line class="u" x1="31" y1="{y + 21}" x2="620" y2="{y + 21}" stroke-width="1"/>'
-    put("repos.svg", 166, "Featured projects", body)
+    put("repos.svg", 106, "Featured projects", body)
 
 
 def social(user, repos):
